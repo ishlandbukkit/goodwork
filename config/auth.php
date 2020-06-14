@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Defaults
@@ -10,10 +11,10 @@ return [
     | reset options for your application. You may change these defaults
     | as required, but they're a perfect start for most applications.
     |
-     */
+    */
 
-    'defaults'  => [
-        'guard'     => 'web',
+    'defaults' => [
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -32,17 +33,18 @@ return [
     |
     | Supported: "session", "token"
     |
-     */
+    */
 
-    'guards'    => [
+    'guards' => [
         'web' => [
-            'driver'   => 'session',
+            'driver' => 'session',
             'provider' => 'users',
         ],
 
         'api' => [
-            'driver'   => 'passport',
+            'driver' => 'token',
             'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -61,12 +63,12 @@ return [
     |
     | Supported: "database", "eloquent"
     |
-     */
+    */
 
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model'  => App\Base\Models\User::class,
+            'model' => App\User::class,
         ],
 
         // 'users' => [
@@ -88,30 +90,28 @@ return [
     | considered valid. This security feature keeps tokens short-lived so
     | they have less time to be guessed. You may change this as needed.
     |
-     */
+    */
 
     'passwords' => [
         'users' => [
             'provider' => 'users',
-            'table'    => 'password_resets',
-            'expire'   => 60,
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
         ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Client credentials for mobile app authentication
+    | Password Confirmation Timeout
     |--------------------------------------------------------------------------
     |
-    | Mobile app authenticate via password grant token through oauth
-    | server. These credentials are important to add to incoming
-    | request as they cannot be stored securely in the app.
+    | Here you may define the amount of seconds before a password confirmation
+    | times out and the user is prompted to re-enter their password via the
+    | confirmation screen. By default, the timeout lasts for three hours.
     |
-     */
+    */
 
-     'mobile' => [
-         'client_id'     => env('CLIENT_ID'),
-         'client_secret' => env('CLIENT_SECRET'),
-     ],
+    'password_timeout' => 10800,
 
 ];

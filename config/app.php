@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -9,31 +10,10 @@ return [
     | This value is the name of your application. This value is used when the
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
-    */
-
-    'name' => 'GOODWORK',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Application Version
-    |--------------------------------------------------------------------------
     |
-    | This value is the current version of your application.
     */
 
-    'version' => '0.8',
-
-    /*
-    |--------------------------------------------------------------------------
-    | Company Name
-    |--------------------------------------------------------------------------
-    |
-    | This value is the name of your organization. This value is used when the
-    | application needs to place the company's name in a notification or
-    | any other location as required by the application or its packages.
-    */
-
-    'company_name' => env('COMPANY_NAME'),
+    'name' => env('APP_NAME', 'MO3MAPS'),
 
     /*
     |--------------------------------------------------------------------------
@@ -42,7 +22,7 @@ return [
     |
     | This value determines the "environment" your application is currently
     | running in. This may determine how you prefer to configure various
-    | services your application utilizes. Set this in your ".env" file.
+    | services the application utilizes. Set this in your ".env" file.
     |
     */
 
@@ -74,18 +54,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    /*
-    |--------------------------------------------------------------------------
-    | Application Scheme
-    |--------------------------------------------------------------------------
-    |
-    | This scheme is used by the app to generate URLs with proper
-    | scheme. Set this value to `https` if you are using ssl
-    | certificates to serve the app, otherwise use `http`.
-    |
-    */
-
-    'scheme' => env('APP_PROTOCOL', 'https'),
+    'asset_url' => env('ASSET_URL', null),
 
     /*
     |--------------------------------------------------------------------------
@@ -111,7 +80,7 @@ return [
     |
     */
 
-    'locale' => env('APP_LOCALE', 'en'),
+    'locale' => 'en',
 
     /*
     |--------------------------------------------------------------------------
@@ -125,6 +94,19 @@ return [
     */
 
     'fallback_locale' => 'en',
+
+    /*
+    |--------------------------------------------------------------------------
+    | Faker Locale
+    |--------------------------------------------------------------------------
+    |
+    | This locale will be used by the Faker PHP library when generating fake
+    | data for your database seeds. For example, this will be used to get
+    | localized telephone numbers, street address information and more.
+    |
+    */
+
+    'faker_locale' => 'en_US',
 
     /*
     |--------------------------------------------------------------------------
@@ -153,6 +135,7 @@ return [
     */
 
     'providers' => [
+
         /*
          * Laravel Framework Service Providers...
          */
@@ -182,28 +165,16 @@ return [
         /*
          * Package Service Providers...
          */
-        Laravel\Tinker\TinkerServiceProvider::class,
-        Lab404\Impersonate\ImpersonateServiceProvider::class,
 
         /*
          * Application Service Providers...
          */
-        App\Base\Providers\AppServiceProvider::class,
-        App\Base\Providers\AuthServiceProvider::class,
-        App\Base\Providers\BroadcastServiceProvider::class,
-        App\Base\Providers\EventServiceProvider::class,
-        App\Base\Providers\RouteServiceProvider::class,
-        App\Base\Providers\DropboxFilesystemServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
-        /*
-         * Modules Service Providers...
-         */
-        App\Authorization\AuthorizationServiceProvider::class,
-        App\Discussion\DiscussionServiceProvider::class,
-        App\Project\ProjectServiceProvider::class,
-        App\Office\OfficeServiceProvider::class,
-        App\Team\TeamServiceProvider::class,
-        App\TaskManager\TaskManagerServiceProvider::class,
     ],
 
     /*
@@ -218,38 +189,43 @@ return [
     */
 
     'aliases' => [
-        'App'          => Illuminate\Support\Facades\App::class,
-        'Artisan'      => Illuminate\Support\Facades\Artisan::class,
-        'Auth'         => Illuminate\Support\Facades\Auth::class,
-        'Blade'        => Illuminate\Support\Facades\Blade::class,
-        'Broadcast'    => Illuminate\Support\Facades\Broadcast::class,
-        'Bus'          => Illuminate\Support\Facades\Bus::class,
-        'Cache'        => Illuminate\Support\Facades\Cache::class,
-        'Config'       => Illuminate\Support\Facades\Config::class,
-        'Cookie'       => Illuminate\Support\Facades\Cookie::class,
-        'Crypt'        => Illuminate\Support\Facades\Crypt::class,
-        'DB'           => Illuminate\Support\Facades\DB::class,
-        'Eloquent'     => Illuminate\Database\Eloquent\Model::class,
-        'Event'        => Illuminate\Support\Facades\Event::class,
-        'File'         => Illuminate\Support\Facades\File::class,
-        'Gate'         => Illuminate\Support\Facades\Gate::class,
-        'Hash'         => Illuminate\Support\Facades\Hash::class,
-        'Lang'         => Illuminate\Support\Facades\Lang::class,
-        'Log'          => Illuminate\Support\Facades\Log::class,
-        'Mail'         => Illuminate\Support\Facades\Mail::class,
+
+        'App' => Illuminate\Support\Facades\App::class,
+        'Arr' => Illuminate\Support\Arr::class,
+        'Artisan' => Illuminate\Support\Facades\Artisan::class,
+        'Auth' => Illuminate\Support\Facades\Auth::class,
+        'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
+        'Bus' => Illuminate\Support\Facades\Bus::class,
+        'Cache' => Illuminate\Support\Facades\Cache::class,
+        'Config' => Illuminate\Support\Facades\Config::class,
+        'Cookie' => Illuminate\Support\Facades\Cookie::class,
+        'Crypt' => Illuminate\Support\Facades\Crypt::class,
+        'DB' => Illuminate\Support\Facades\DB::class,
+        'Eloquent' => Illuminate\Database\Eloquent\Model::class,
+        'Event' => Illuminate\Support\Facades\Event::class,
+        'File' => Illuminate\Support\Facades\File::class,
+        'Gate' => Illuminate\Support\Facades\Gate::class,
+        'Hash' => Illuminate\Support\Facades\Hash::class,
+        'Lang' => Illuminate\Support\Facades\Lang::class,
+        'Log' => Illuminate\Support\Facades\Log::class,
+        'Mail' => Illuminate\Support\Facades\Mail::class,
         'Notification' => Illuminate\Support\Facades\Notification::class,
-        'Password'     => Illuminate\Support\Facades\Password::class,
-        'Queue'        => Illuminate\Support\Facades\Queue::class,
-        'Redirect'     => Illuminate\Support\Facades\Redirect::class,
-        'Redis'        => Illuminate\Support\Facades\Redis::class,
-        'Request'      => Illuminate\Support\Facades\Request::class,
-        'Response'     => Illuminate\Support\Facades\Response::class,
-        'Route'        => Illuminate\Support\Facades\Route::class,
-        'Schema'       => Illuminate\Support\Facades\Schema::class,
-        'Session'      => Illuminate\Support\Facades\Session::class,
-        'Storage'      => Illuminate\Support\Facades\Storage::class,
-        'URL'          => Illuminate\Support\Facades\URL::class,
-        'Validator'    => Illuminate\Support\Facades\Validator::class,
-        'View'         => Illuminate\Support\Facades\View::class,
+        'Password' => Illuminate\Support\Facades\Password::class,
+        'Queue' => Illuminate\Support\Facades\Queue::class,
+        'Redirect' => Illuminate\Support\Facades\Redirect::class,
+        'Redis' => Illuminate\Support\Facades\Redis::class,
+        'Request' => Illuminate\Support\Facades\Request::class,
+        'Response' => Illuminate\Support\Facades\Response::class,
+        'Route' => Illuminate\Support\Facades\Route::class,
+        'Schema' => Illuminate\Support\Facades\Schema::class,
+        'Session' => Illuminate\Support\Facades\Session::class,
+        'Storage' => Illuminate\Support\Facades\Storage::class,
+        'Str' => Illuminate\Support\Str::class,
+        'URL' => Illuminate\Support\Facades\URL::class,
+        'Validator' => Illuminate\Support\Facades\Validator::class,
+        'View' => Illuminate\Support\Facades\View::class,
+
     ],
+
 ];
